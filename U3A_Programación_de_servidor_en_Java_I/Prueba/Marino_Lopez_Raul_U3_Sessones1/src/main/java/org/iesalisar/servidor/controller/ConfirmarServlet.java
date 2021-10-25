@@ -48,7 +48,6 @@ public class ConfirmarServlet extends HttpServlet {
 			String numero = request.getParameter("correo");
 			String[] extras = request.getParameterValues("extras");
 			
-			
 			sesion.setAttribute("fechainicio", finicio);
 			sesion.setAttribute("apellidos", ffin);
 			sesion.setAttribute("numpersonas", numero);
