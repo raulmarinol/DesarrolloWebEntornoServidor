@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/bootstrap::head(title='menu.profesor')"></head>
+<body>
+	<div class="container mt-5">
+		<div class="row mt-5 justify-content-center">
+			<header th:insert="fragments/parts::menu"></header>
+			
+			<div class="col-8">
+				<h1 class="text-center">Profesores de la Universidad</h1>
+				<table class="table table-stripped table-hover">
+					<thead class="table-light">
+						<tr>
+							<th>ID</th>
+							<th>NIF</th>
+							<th th:text="#{name}"></th>
+							<th th:text="#{firstName}"></th>
+							<th th:text="#{department}"></th>
+							<th></th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="p : ${profesores}">
+							<td th:text="${p.getId()}"></td>
+							<td th:text="${p.getNif()}"></td>
+							<td th:text="${p.getNombre()}"></td>
+							<td th:text="${p.getApellido1()}"></td>
+							<td th:if="${p.getDepartamento()!=null}" th:text="${p.getDepartamento().getNombre()}"></td>
+							<td th:if="${p.getDepartamento()==null}" th:text="#{noDepartment}"></td>
+							<td><a th:href="@{'/profesores/asignaturas?prof='+${p.getId()}}"><i class="bi bi-eye-fill"></i></a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+			<footer th:replace="fragments/parts::footer(info='menu.profesor')"></footer>
+		</div>
+	</div>
+</body>
+</html>

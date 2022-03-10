@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/bootstrap::head(title='menu.subjects')"></head>
+<body>
+	<div class="container mt-5">
+		<div class="row mt-5 justify-content-center">
+			<header th:insert="fragments/parts::menu"></header>	
+            <h6 class="text-success" th:if="${correcto!=null}" th:text="|#{deleteAsigProf} ${profesores.nombre} ${profesores.apellido1} ${profesores.apellido2}|"></h6>
+			<div class="col-8">
+			<h4 class="text-center mt-3" th:text="|#{asigOf}: ${profesores.nombre} ${profesores.apellido1} ${profesores.apellido2}|"></h4>
+				<table class="table table-stripped table-hover">
+					<thead class="table-light">
+					<tr>
+						<th>ID</th>
+						<th th:text="#{name}"></th>
+						<th th:text="#{credits}"></th>
+						<th th:text="#{type}"></th>
+						<th th:text="#{course}"></th>						
+						<th th:text="#{quarter}"></th>
+						<th></th>
+					</tr>
+					</thead>					
+					<tbody>
+					 <tr th:each="a : ${profesores.getAsignaturas()}">
+					 	<td th:text="${a.id}"></td>
+					 	<td th:text="${a.nombre}"></td>
+					 	<td th:text="${a.creditos}"></td>
+					 	<td th:text="${a.tipo}"></td>					 	
+					 	<td th:text="${a.curso}"></td>
+					 	<td th:text="${a.cuatrimestre}"></td>
+					 </tr>					
+					</tbody>
+				</table>
+			</div>
+
+			<footer th:replace="fragments/parts::footer(info='menu.subjects')"></footer>
+		</div>
+	</div>
+</body>
+</html>
